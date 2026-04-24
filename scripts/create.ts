@@ -67,7 +67,7 @@ const appPackageJson = () => `{
 \t\t"typecheck": "tsc --noEmit"
 \t},
 \t"dependencies": {
-\t\t"@shared": "workspace:*"
+\t\t"@arc/shared": "workspace:*"
 \t}
 }
 `;

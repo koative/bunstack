@@ -1,5 +1,5 @@
 {
-	"name": "@shared",
+	"name": "@arc/shared",
 	"module": "index.ts",
 	"type": "module",
 	"private": true,

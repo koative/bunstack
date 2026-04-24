@@ -1,5 +1,5 @@
 {
-	"name": "@ui",
+	"name": "@arc/ui",
 	"module": "index.ts",
 	"type": "module",
 	"exports": {

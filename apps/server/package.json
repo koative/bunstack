@@ -10,7 +10,7 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@shared": "workspace:*",
+		"@arc/shared": "workspace:*",
 		"hono": "catalog:"
 	}
 }

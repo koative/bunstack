@@ -10,7 +10,7 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@shared": "workspace:*",
-		"@ui": "workspace:*"
+		"@arc/shared": "workspace:*",
+		"@arc/ui": "workspace:*"
 	}
 }
