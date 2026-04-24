@@ -8,6 +8,7 @@ function ThemeToggle() {
 
 	return (
 		<Button
+			suppressHydrationWarning
 			variant="outline"
 			onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
 		>
