@@ -1,4 +1,4 @@
-import "@arc/ui/global.css";
+import "@arc/ui/globals.css";
 
 export default function RootLayout({
 	children,

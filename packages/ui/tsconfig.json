@@ -3,7 +3,9 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-			"@/*": ["./*"]
+			"@/*": ["./src/*"]
 		}
-	}
+	},
+	"include": ["src", "postcss.config.ts"],
+	"exclude": ["node_modules"]
 }

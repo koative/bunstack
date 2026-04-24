@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@arc/ui/button";
+import { Button } from "@arc/ui/components/button";
 
 export default function Page() {
 	return (
