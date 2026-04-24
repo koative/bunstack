@@ -1,15 +1,16 @@
 {
 	"name": "@apps/server",
-	"module": "index.ts",
+	"module": "src/index.ts",
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"dev": "bun --watch index.ts",
-		"build": "bun build ./index.ts --outdir ./dist --target bun",
-		"start": "bun index.ts",
+		"dev": "bun run --hot src/index.ts",
+		"build": "bun build ./src/index.ts --outdir ./dist --target bun",
+		"start": "bun src/index.ts",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@packages/shared": "workspace:*"
+		"@packages/shared": "workspace:*",
+		"hono": "catalog:"
 	}
 }

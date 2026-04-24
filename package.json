@@ -19,5 +19,8 @@
 	"workspaces": [
 		"packages/*",
 		"apps/*"
-	]
+	],
+	"catalog": {
+		"hono": "^4"
+	}
 }
