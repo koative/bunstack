@@ -1,7 +1,6 @@
 {
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
-		// Next.js overrides
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"jsx": "preserve",
 		"incremental": true,
@@ -9,14 +8,7 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"types": ["@types/react", "@types/react-dom"],
-		"plugins": [{ "name": "next" }],
-		"paths": {
-			"@arc/shared": ["packages/shared/index.ts"],
-			"@arc/ui/utils": ["packages/ui/lib/utils.ts"],
-			"@arc/ui/*": ["packages/ui/components/ui/*", "packages/ui/lib/*"],
-			// @/* used internally by shadcn-generated components in @arc/ui
-			"@/*": ["packages/ui/*"]
-		}
+		"plugins": [{ "name": "next" }]
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
 	"exclude": ["node_modules"]

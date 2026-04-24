@@ -35,7 +35,8 @@
 			"@arc/shared": ["packages/shared/index.ts"],
 			"@arc/ui/utils": ["packages/ui/lib/utils.ts"],
 			"@arc/ui/*": ["packages/ui/components/ui/*", "packages/ui/lib/*"],
-			"@apps/*": ["apps/*/index.ts"]
+			"@apps/*": ["apps/*/index.ts"],
+			"@/*": ["packages/ui/*"]
 		}
 	}
 }
