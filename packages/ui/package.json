@@ -3,10 +3,11 @@
 	"type": "module",
 	"private": true,
 	"exports": {
+		"./utils": "./src/lib/utils.ts",
 		"./globals.css": "./src/styles/globals.css",
 		"./postcss.config": "./postcss.config.ts",
-		"./lib/*": "./src/lib/*.ts",
-		"./components/*": "./src/components/*.tsx"
+		"./providers/*": "./src/providers/*.tsx",
+		"./*": "./src/components/*.tsx"
 	},
 	"scripts": {
 		"typecheck": "tsc --noEmit",
@@ -17,7 +18,12 @@
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:"
 	},
+	"peerDependencies": {
+		"react": "catalog:",
+		"react-dom": "catalog:"
+	},
 	"dependencies": {
+		"next-themes": "catalog:",
 		"shadcn": "catalog:",
 		"tailwindcss": "catalog:",
 		"tw-animate-css": "catalog:",

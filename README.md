@@ -31,8 +31,6 @@ bun run dev       # run all apps in watch mode (parallel)
 | `bun run lint` | Lint with Biome |
 | `bun run lint:fix` | Auto-fix with Biome |
 | `bun run test` | Run tests in `packages/` |
-| `bun run create app <name>` | Scaffold a new app |
-| `bun run create shared <name>` | Scaffold a new package |
 
 ## Add Dependencies
 

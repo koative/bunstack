@@ -8,7 +8,6 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@arc/shared": "workspace:*",
 		"@arc/ui": "workspace:*",
 		"next": "catalog:",
 		"react": "catalog:",

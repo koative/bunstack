@@ -20,15 +20,19 @@ Bun-native monorepo using built-in workspaces — no Turborepo or other build or
 
 ```
 apps/
-  client/   → @apps/client   (frontend)
-  server/   → @apps/server   (backend)
+  client/   → @apps/client   (Next.js frontend)
+  server/   → @apps/server   (Hono backend)
 packages/
-  shared/   → @packages/shared  (shared code consumed by both apps)
+  shared/   → @arc/shared    (shared code consumed by both apps)
+  ui/       → @arc/ui        (components, providers, styles)
 ```
 
 Workspace packages are referenced via path aliases defined in the root `tsconfig.json`:
-- `@packages/*` → `packages/*/index.ts`
-- `@apps/*` → `apps/*/index.ts`
+- `@arc/shared` → `packages/shared/index.ts`
+- `@arc/ui/*` → `packages/ui/src/components/*.tsx`
+- `@arc/ui/providers/*` → `packages/ui/src/providers/*.tsx`
+- `@arc/ui/utils` → `packages/ui/src/lib/utils.ts`
+- `@arc/ui/globals.css` → `packages/ui/src/styles/globals.css`
 
 Each app and package extends the root `tsconfig.json`. Tests live alongside source files as `*.test.ts`. Only `packages/` has a `test` script; apps use integration/e2e tests when needed.
 
@@ -49,6 +53,6 @@ Always use Bun APIs — never reach for Node/npm equivalents:
 - `WebSocket` built-in — not ws
 - Bun auto-loads `.env` — never use dotenv
 
-## Frontend (when applicable)
+## Frontend
 
-Use `Bun.serve()` with HTML imports instead of Vite. HTML files can directly import `.tsx`/`.jsx`/`.css` and Bun's bundler handles transpilation and bundling automatically. Run with `bun --hot` for HMR.
+`apps/client` uses Next.js 16 with Turbopack. UI components and styles live in `@arc/ui` and are imported directly into the app. Add new shadcn components by running `bun run add <component>` from inside `packages/ui`.

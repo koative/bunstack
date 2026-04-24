@@ -1,6 +1,6 @@
 # @apps/server
 
-Backend application built with [Hono](https://hono.dev) on `Bun.serve()`.
+Backend built with [Hono](https://hono.dev) on `Bun.serve()`.
 
 ## Scripts
 
@@ -20,4 +20,4 @@ bun run typecheck # tsc --noEmit
 ## Dependencies
 
 - `hono` — web framework (version pinned via root catalog)
-- `@packages/shared` — shared utilities from the monorepo
+- `@arc/shared` — shared utilities from the monorepo

@@ -33,11 +33,10 @@
 		"baseUrl": ".",
 		"paths": {
 			"@arc/shared": ["packages/shared/index.ts"],
+			"@arc/ui/utils": ["packages/ui/src/lib/utils.ts"],
 			"@arc/ui/globals.css": ["packages/ui/src/styles/globals.css"],
-			"@arc/ui/lib/*": ["packages/ui/src/lib/*.ts"],
-			"@arc/ui/components/*": ["packages/ui/src/components/*.tsx"],
-			"@arc/ui/*": ["packages/ui/src/*"],
-			"@apps/*": ["apps/*/index.ts"]
+			"@arc/ui/providers/*": ["packages/ui/src/providers/*.tsx"],
+			"@arc/ui/*": ["packages/ui/src/components/*.tsx"]
 		}
 	}
 }

@@ -1,18 +1,20 @@
 # @apps/client
 
-Frontend application. Uses `Bun.serve()` with HTML imports — no Vite or other bundler.
-
-HTML files can directly import `.tsx`/`.jsx`/`.css`; Bun's bundler handles transpilation automatically. Run with `bun --hot` for HMR.
+Next.js 16 frontend with Turbopack. UI components and styles are provided by `@arc/ui`.
 
 ## Scripts
 
 ```bash
-bun run dev       # watch mode (bun --watch)
+bun run dev       # watch mode (Turbopack)
 bun run start     # production
-bun run build     # bundle to dist/ (target: browser)
+bun run build     # build to .next/
 bun run typecheck # tsc --noEmit
 ```
 
-## Dependencies
+## Adding components
 
-- `@packages/shared` — shared utilities from the monorepo
+Run from `packages/ui`:
+
+```bash
+bun run add <component>
+```

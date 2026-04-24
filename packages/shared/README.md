@@ -1,13 +1,11 @@
-# @packages/shared
+# @arc/shared
 
-Shared utilities and types consumed by both `@apps/client` and `@apps/server`.
+Shared utilities and types consumed by `@apps/server` and any app that needs them.
 
 ## Usage
 
 ```typescript
-import { utils } from "@packages/shared";
-
-utils.log("hello");
+import { } from "@arc/shared";
 ```
 
 ## Scripts

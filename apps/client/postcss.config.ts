@@ -1,1 +1,5 @@
-export { default } from "@arc/ui/postcss.config";
+export default {
+	plugins: {
+		"@tailwindcss/postcss": {},
+	},
+};
