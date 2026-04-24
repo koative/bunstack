@@ -1,4 +1,4 @@
-# bunstack
+# arcstack
 
 A Bun-native monorepo template using built-in workspaces — no Turborepo or other build orchestration.
 
@@ -9,7 +9,8 @@ apps/
   client/   → @apps/client   (frontend)
   server/   → @apps/server   (backend)
 packages/
-  shared/   → @packages/shared  (shared code)
+  shared/   → @arc/shared  (shared code)
+  ui/       → @arc/ui       (components & styles)
 ```
 
 ## Getting Started
@@ -30,6 +31,8 @@ bun run dev       # run all apps in watch mode (parallel)
 | `bun run lint` | Lint with Biome |
 | `bun run lint:fix` | Auto-fix with Biome |
 | `bun run test` | Run tests in `packages/` |
+| `bun run create app <name>` | Scaffold a new app |
+| `bun run create shared <name>` | Scaffold a new package |
 
 ## Add Dependencies
 
@@ -40,7 +43,7 @@ bun add -d <package>
 # Specific workspace
 bun add --filter @apps/server <package>
 bun add --filter @apps/client <package>
-bun add --filter @packages/shared <package>
+bun add --filter @arc/shared <package>
 ```
 
 ## Conventions
@@ -48,4 +51,4 @@ bun add --filter @packages/shared <package>
 - Bun APIs only — no Node/npm equivalents (see `CLAUDE.md` for the full list)
 - Tests live alongside source as `*.test.ts` and are run with `bun test`
 - Linting via [Biome](https://biomejs.dev)
-- Path aliases: `@packages/*` and `@apps/*` resolve via root `tsconfig.json`
+- Path aliases: `@arc/*` and `@apps/*` resolve via root `tsconfig.json`
