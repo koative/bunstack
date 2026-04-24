@@ -1,16 +1,21 @@
 {
 	"name": "@apps/client",
-	"module": "index.ts",
-	"type": "module",
 	"private": true,
 	"scripts": {
-		"dev": "bun --watch index.ts",
-		"build": "bun build ./index.ts --outdir ./dist --target browser",
-		"start": "bun index.ts",
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@arc/shared": "workspace:*",
-		"@arc/ui": "workspace:*"
+		"@arc/ui": "workspace:*",
+		"next": "catalog:",
+		"react": "catalog:",
+		"react-dom": "catalog:"
+	},
+	"devDependencies": {
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:"
 	}
 }
