@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import "@arc/ui/globals.css";
+import "@eros/ui/globals.css";
 
-import { ThemeProvider } from "@arc/ui/providers/theme-provider";
+import { ThemeProvider } from "@eros/ui/providers/theme-provider";
 
 export const metadata: Metadata = {
 	title: "arcstack",

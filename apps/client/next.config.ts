@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-	transpilePackages: ["@arc/ui"],
+	transpilePackages: ["@eros/ui"],
 };
 
 export default nextConfig;

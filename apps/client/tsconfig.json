@@ -12,10 +12,10 @@
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["./*"],
-			"@arc/ui/utils": ["../../packages/ui/src/lib/utils.ts"],
-			"@arc/ui/globals.css": ["../../packages/ui/src/styles/globals.css"],
-			"@arc/ui/providers/*": ["../../packages/ui/src/providers/*.tsx"],
-			"@arc/ui/*": ["../../packages/ui/src/components/*.tsx"]
+			"@eros/ui/utils": ["../../packages/ui/src/lib/utils.ts"],
+			"@eros/ui/globals.css": ["../../packages/ui/src/styles/globals.css"],
+			"@eros/ui/providers/*": ["../../packages/ui/src/providers/*.tsx"],
+			"@eros/ui/*": ["../../packages/ui/src/components/*.tsx"]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

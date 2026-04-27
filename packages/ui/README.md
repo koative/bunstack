@@ -1,15 +1,15 @@
-# @arc/ui
+# @eros/ui
 
 UI components, providers, and styles built with shadcn (base-nova) and Tailwind v4.
 
 ## Usage
 
 ```typescript
-import { Button } from "@arc/ui/button";
-import { ThemeToggle } from "@arc/ui/theme-toggle";
-import { ThemeProvider } from "@arc/ui/providers/theme-provider";
-import { cn } from "@arc/ui/utils";
-import "@arc/ui/globals.css";
+import { Button } from "@eros/ui/button";
+import { ThemeToggle } from "@eros/ui/theme-toggle";
+import { ThemeProvider } from "@eros/ui/providers/theme-provider";
+import { cn } from "@eros/ui/utils";
+import "@eros/ui/globals.css";
 ```
 
 ## Adding components

@@ -20,13 +20,13 @@ import {
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
-} from "@arc/ui/accordion";
+} from "@eros/ui/accordion";
 import {
 	Alert,
 	AlertAction,
 	AlertDescription,
 	AlertTitle,
-} from "@arc/ui/alert";
+} from "@eros/ui/alert";
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -37,10 +37,10 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
-} from "@arc/ui/alert-dialog";
-import { AspectRatio } from "@arc/ui/aspect-ratio";
-import { Avatar, AvatarFallback, AvatarImage } from "@arc/ui/avatar";
-import { Badge } from "@arc/ui/badge";
+} from "@eros/ui/alert-dialog";
+import { AspectRatio } from "@eros/ui/aspect-ratio";
+import { Avatar, AvatarFallback, AvatarImage } from "@eros/ui/avatar";
+import { Badge } from "@eros/ui/badge";
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -48,10 +48,10 @@ import {
 	BreadcrumbList,
 	BreadcrumbPage,
 	BreadcrumbSeparator,
-} from "@arc/ui/breadcrumb";
-import { Button } from "@arc/ui/button";
-import { ButtonGroup } from "@arc/ui/button-group";
-import { Calendar } from "@arc/ui/calendar";
+} from "@eros/ui/breadcrumb";
+import { Button } from "@eros/ui/button";
+import { ButtonGroup } from "@eros/ui/button-group";
+import { Calendar } from "@eros/ui/calendar";
 import {
 	Card,
 	CardContent,
@@ -59,27 +59,27 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from "@arc/ui/card";
+} from "@eros/ui/card";
 import {
 	Carousel,
 	CarouselContent,
 	CarouselItem,
 	CarouselNext,
 	CarouselPrevious,
-} from "@arc/ui/carousel";
-import { Checkbox } from "@arc/ui/checkbox";
+} from "@eros/ui/carousel";
+import { Checkbox } from "@eros/ui/checkbox";
 import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
-} from "@arc/ui/collapsible";
+} from "@eros/ui/collapsible";
 import {
 	ContextMenu,
 	ContextMenuContent,
 	ContextMenuItem,
 	ContextMenuSeparator,
 	ContextMenuTrigger,
-} from "@arc/ui/context-menu";
+} from "@eros/ui/context-menu";
 import {
 	Dialog,
 	DialogContent,
@@ -88,7 +88,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from "@arc/ui/dialog";
+} from "@eros/ui/dialog";
 import {
 	Drawer,
 	DrawerContent,
@@ -97,7 +97,7 @@ import {
 	DrawerHeader,
 	DrawerTitle,
 	DrawerTrigger,
-} from "@arc/ui/drawer";
+} from "@eros/ui/drawer";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -105,7 +105,7 @@ import {
 	DropdownMenuLabel,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
-} from "@arc/ui/dropdown-menu";
+} from "@eros/ui/dropdown-menu";
 import {
 	Empty,
 	EmptyContent,
@@ -113,34 +113,34 @@ import {
 	EmptyHeader,
 	EmptyMedia,
 	EmptyTitle,
-} from "@arc/ui/empty";
-import { Field, FieldDescription, FieldLabel } from "@arc/ui/field";
+} from "@eros/ui/empty";
+import { Field, FieldDescription, FieldLabel } from "@eros/ui/field";
 import {
 	HoverCard,
 	HoverCardContent,
 	HoverCardTrigger,
-} from "@arc/ui/hover-card";
-import { Input } from "@arc/ui/input";
+} from "@eros/ui/hover-card";
+import { Input } from "@eros/ui/input";
 import {
 	InputGroup,
 	InputGroupAddon,
 	InputGroupInput,
-} from "@arc/ui/input-group";
+} from "@eros/ui/input-group";
 import {
 	InputOTP,
 	InputOTPGroup,
 	InputOTPSeparator,
 	InputOTPSlot,
-} from "@arc/ui/input-otp";
+} from "@eros/ui/input-otp";
 import {
 	Item,
 	ItemContent,
 	ItemDescription,
 	ItemMedia,
 	ItemTitle,
-} from "@arc/ui/item";
-import { Kbd, KbdGroup } from "@arc/ui/kbd";
-import { Label } from "@arc/ui/label";
+} from "@eros/ui/item";
+import { Kbd, KbdGroup } from "@eros/ui/kbd";
+import { Label } from "@eros/ui/label";
 import {
 	Menubar,
 	MenubarContent,
@@ -148,11 +148,11 @@ import {
 	MenubarMenu,
 	MenubarSeparator,
 	MenubarTrigger,
-} from "@arc/ui/menubar";
+} from "@eros/ui/menubar";
 import {
 	NativeSelect,
 	NativeSelectOption,
-} from "@arc/ui/native-select";
+} from "@eros/ui/native-select";
 import {
 	NavigationMenu,
 	NavigationMenuContent,
@@ -160,7 +160,7 @@ import {
 	NavigationMenuLink,
 	NavigationMenuList,
 	NavigationMenuTrigger,
-} from "@arc/ui/navigation-menu";
+} from "@eros/ui/navigation-menu";
 import {
 	Pagination,
 	PaginationContent,
@@ -168,24 +168,24 @@ import {
 	PaginationLink,
 	PaginationNext,
 	PaginationPrevious,
-} from "@arc/ui/pagination";
-import { Popover, PopoverContent, PopoverTrigger } from "@arc/ui/popover";
-import { Progress } from "@arc/ui/progress";
-import { RadioGroup, RadioGroupItem } from "@arc/ui/radio-group";
+} from "@eros/ui/pagination";
+import { Popover, PopoverContent, PopoverTrigger } from "@eros/ui/popover";
+import { Progress } from "@eros/ui/progress";
+import { RadioGroup, RadioGroupItem } from "@eros/ui/radio-group";
 import {
 	ResizableHandle,
 	ResizablePanel,
 	ResizablePanelGroup,
-} from "@arc/ui/resizable";
-import { ScrollArea } from "@arc/ui/scroll-area";
+} from "@eros/ui/resizable";
+import { ScrollArea } from "@eros/ui/scroll-area";
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "@arc/ui/select";
-import { Separator } from "@arc/ui/separator";
+} from "@eros/ui/select";
+import { Separator } from "@eros/ui/separator";
 import {
 	Sheet,
 	SheetContent,
@@ -193,12 +193,12 @@ import {
 	SheetHeader,
 	SheetTitle,
 	SheetTrigger,
-} from "@arc/ui/sheet";
-import { Skeleton } from "@arc/ui/skeleton";
-import { Slider } from "@arc/ui/slider";
-import { Toaster } from "@arc/ui/sonner";
-import { Spinner } from "@arc/ui/spinner";
-import { Switch } from "@arc/ui/switch";
+} from "@eros/ui/sheet";
+import { Skeleton } from "@eros/ui/skeleton";
+import { Slider } from "@eros/ui/slider";
+import { Toaster } from "@eros/ui/sonner";
+import { Spinner } from "@eros/ui/spinner";
+import { Switch } from "@eros/ui/switch";
 import {
 	Table,
 	TableBody,
@@ -206,18 +206,18 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from "@arc/ui/table";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@arc/ui/tabs";
-import { Textarea } from "@arc/ui/textarea";
-import { ThemeToggle } from "@arc/ui/theme-toggle";
-import { Toggle } from "@arc/ui/toggle";
-import { ToggleGroup, ToggleGroupItem } from "@arc/ui/toggle-group";
+} from "@eros/ui/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@eros/ui/tabs";
+import { Textarea } from "@eros/ui/textarea";
+import { ThemeToggle } from "@eros/ui/theme-toggle";
+import { Toggle } from "@eros/ui/toggle";
+import { ToggleGroup, ToggleGroupItem } from "@eros/ui/toggle-group";
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipProvider,
 	TooltipTrigger,
-} from "@arc/ui/tooltip";
+} from "@eros/ui/tooltip";
 
 function Section({
 	title,
@@ -243,7 +243,7 @@ export default function Page() {
 			<main className="mx-auto flex max-w-6xl flex-col gap-6 p-8">
 				<header className="flex items-center justify-between">
 					<div>
-						<h1 className="font-bold text-3xl">@arc/ui showcase</h1>
+						<h1 className="font-bold text-3xl">@eros/ui showcase</h1>
 						<p className="text-muted-foreground">
 							All components from the design system.
 						</p>

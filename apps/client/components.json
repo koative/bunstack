@@ -14,7 +14,7 @@
 		"components": "@/components",
 		"hooks": "@/hooks",
 		"lib": "@/lib",
-		"utils": "@arc/ui/lib/utils",
-		"ui": "@arc/ui/components"
+		"utils": "@eros/ui/lib/utils",
+		"ui": "@eros/ui/components"
 	}
 }

@@ -3,14 +3,14 @@
 import * as React from "react"
 import { Combobox as ComboboxPrimitive } from "@base-ui/react"
 
-import { cn } from "@arc/ui/lib/utils"
-import { Button } from "@arc/ui/components/button"
+import { cn } from "@eros/ui/lib/utils"
+import { Button } from "@eros/ui/components/button"
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
-} from "@arc/ui/components/input-group"
+} from "@eros/ui/components/input-group"
 import { ChevronDownIcon, XIcon, CheckIcon } from "lucide-react"
 
 const Combobox = ComboboxPrimitive.Root

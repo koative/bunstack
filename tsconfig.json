@@ -32,14 +32,14 @@
 		// Paths
 		"baseUrl": ".",
 		"paths": {
-			"@arc/shared": ["packages/shared/index.ts"],
-			"@arc/ui/utils": ["packages/ui/src/lib/utils.ts"],
-			"@arc/ui/globals.css": ["packages/ui/src/styles/globals.css"],
-			"@arc/ui/providers/*": ["packages/ui/src/providers/*.tsx"],
-			"@arc/ui/lib/*": ["packages/ui/src/lib/*.ts"],
-			"@arc/ui/hooks/*": ["packages/ui/src/hooks/*.ts"],
-			"@arc/ui/components/*": ["packages/ui/src/components/*.tsx"],
-			"@arc/ui/*": ["packages/ui/src/components/*.tsx"]
+			"@eros/shared": ["packages/shared/index.ts"],
+			"@eros/ui/utils": ["packages/ui/src/lib/utils.ts"],
+			"@eros/ui/globals.css": ["packages/ui/src/styles/globals.css"],
+			"@eros/ui/providers/*": ["packages/ui/src/providers/*.tsx"],
+			"@eros/ui/lib/*": ["packages/ui/src/lib/*.ts"],
+			"@eros/ui/hooks/*": ["packages/ui/src/hooks/*.ts"],
+			"@eros/ui/components/*": ["packages/ui/src/components/*.tsx"],
+			"@eros/ui/*": ["packages/ui/src/components/*.tsx"]
 		}
 	}
 }

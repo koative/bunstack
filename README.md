@@ -9,8 +9,8 @@ apps/
   client/   → @apps/client   (frontend)
   server/   → @apps/server   (backend)
 packages/
-  shared/   → @arc/shared  (shared code)
-  ui/       → @arc/ui       (components & styles)
+  shared/   → @eros/shared  (shared code)
+  ui/       → @eros/ui       (components & styles)
 ```
 
 ## Getting Started
@@ -41,7 +41,7 @@ bun add -d <package>
 # Specific workspace
 bun add --filter @apps/server <package>
 bun add --filter @apps/client <package>
-bun add --filter @arc/shared <package>
+bun add --filter @eros/shared <package>
 ```
 
 ## Conventions
@@ -49,4 +49,4 @@ bun add --filter @arc/shared <package>
 - Bun APIs only — no Node/npm equivalents (see `CLAUDE.md` for the full list)
 - Tests live alongside source as `*.test.ts` and are run with `bun test`
 - Linting via [Biome](https://biomejs.dev)
-- Path aliases: `@arc/*` and `@apps/*` resolve via root `tsconfig.json`
+- Path aliases: `@eros/*` and `@apps/*` resolve via root `tsconfig.json`

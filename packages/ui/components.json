@@ -11,10 +11,10 @@
 	},
 	"iconLibrary": "lucide",
 	"aliases": {
-		"components": "@arc/ui/components",
-		"utils": "@arc/ui/utils",
-		"hooks": "@arc/ui/hooks",
-		"lib": "@arc/ui/lib",
-		"ui": "@arc/ui/components"
+		"components": "@eros/ui/components",
+		"utils": "@eros/ui/utils",
+		"hooks": "@eros/ui/hooks",
+		"lib": "@eros/ui/lib",
+		"ui": "@eros/ui/components"
 	}
 }

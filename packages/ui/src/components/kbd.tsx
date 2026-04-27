@@ -1,4 +1,4 @@
-import { cn } from "@arc/ui/lib/utils"
+import { cn } from "@eros/ui/lib/utils"
 
 function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
   return (

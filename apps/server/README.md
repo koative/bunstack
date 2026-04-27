@@ -20,4 +20,4 @@ bun run typecheck # tsc --noEmit
 ## Dependencies
 
 - `hono` — web framework (version pinned via root catalog)
-- `@arc/shared` — shared utilities from the monorepo
+- `@eros/shared` — shared utilities from the monorepo
