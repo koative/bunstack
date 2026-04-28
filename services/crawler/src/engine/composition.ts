@@ -46,6 +46,7 @@ export function buildEngine() {
 					rateLimitPerMinute: h.config?.rateLimit?.perMinute,
 					defaultConcurrency: h.config?.concurrency,
 					recrawlIntervalSec: h.config?.recrawlIntervalSec,
+					respectRobotsTxt: h.config?.respectRobotsTxt ?? false,
 				}),
 			),
 		);

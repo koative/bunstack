@@ -42,6 +42,7 @@ export interface CrawlerConfig {
 	retries?: number;
 	timeoutMs?: number;
 	recrawlIntervalSec?: number;
+	respectRobotsTxt?: boolean;
 }
 
 export interface CrawlRequest {
