@@ -33,6 +33,8 @@
 		"baseUrl": ".",
 		"paths": {
 			"@eros/shared": ["packages/shared/index.ts"],
+			"@eros/crawler-core": ["packages/crawler-core/src/index.ts"],
+			"@eros/crawler-core/*": ["packages/crawler-core/src/*"],
 			"@eros/ui/utils": ["packages/ui/src/lib/utils.ts"],
 			"@eros/ui/globals.css": ["packages/ui/src/styles/globals.css"],
 			"@eros/ui/providers/*": ["packages/ui/src/providers/*.tsx"],

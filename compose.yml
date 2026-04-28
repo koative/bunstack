@@ -1,0 +1,89 @@
+name: eros
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-eros}
+      POSTGRES_USER: ${POSTGRES_USER:-eros}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-eros}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-eros} -d ${POSTGRES_DB:-eros}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks: [eros]
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory-policy", "noeviction"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks: [eros]
+
+  crawler-migrate:
+    build:
+      context: .
+      dockerfile: services/crawler/Dockerfile
+    restart: "no"
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgres://${POSTGRES_USER:-eros}:${POSTGRES_PASSWORD:-eros}@postgres:5432/${POSTGRES_DB:-eros}
+      REDIS_URL: redis://redis:6379
+    command: ["bun", "run", "src/db/migrate.ts"]
+    depends_on:
+      postgres: { condition: service_healthy }
+    networks: [eros]
+
+  crawler:
+    build:
+      context: .
+      dockerfile: services/crawler/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "${CRAWLER_PORT:-1337}:1337"
+    environment:
+      NODE_ENV: production
+      PORT: 1337
+      DATABASE_URL: postgres://${POSTGRES_USER:-eros}:${POSTGRES_PASSWORD:-eros}@postgres:5432/${POSTGRES_DB:-eros}
+      REDIS_URL: redis://redis:6379
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      WORKER_CONCURRENCY: ${WORKER_CONCURRENCY:-4}
+      BULLMQ_PREFIX: ${BULLMQ_PREFIX:-eros:crawl}
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+      crawler-migrate: { condition: service_completed_successfully }
+    networks: [eros]
+
+  admin:
+    build:
+      context: .
+      dockerfile: apps/admin/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "${ADMIN_PORT:-1002}:1002"
+    environment:
+      NODE_ENV: production
+      PORT: 1002
+      CRAWLER_API_URL: http://crawler:1337
+    depends_on:
+      crawler: { condition: service_started }
+    networks: [eros]
+
+volumes:
+  pg_data:
+  redis_data:
+
+networks:
+  eros:
+    driver: bridge

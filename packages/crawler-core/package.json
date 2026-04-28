@@ -1,0 +1,19 @@
+{
+	"name": "@eros/crawler-core",
+	"type": "module",
+	"private": true,
+	"exports": {
+		".": "./src/index.ts",
+		"./url": "./src/url/index.ts",
+		"./retry": "./src/retry/index.ts",
+		"./errors": "./src/errors.ts",
+		"./logger": "./src/logger/index.ts"
+	},
+	"scripts": {
+		"test": "bun test",
+		"typecheck": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@types/bun": "latest"
+	}
+}

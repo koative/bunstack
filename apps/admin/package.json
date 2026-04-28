@@ -1,10 +1,10 @@
 {
-	"name": "@apps/client",
+	"name": "@apps/admin",
 	"private": true,
 	"scripts": {
-		"dev": "next dev --turbopack --port 1001",
+		"dev": "next dev --turbopack --port 1002",
 		"build": "next build",
-		"start": "next start",
+		"start": "next start --port 1002",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {

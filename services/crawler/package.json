@@ -1,0 +1,29 @@
+{
+	"name": "@services/crawler",
+	"module": "src/index.ts",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "bun run --hot src/index.ts",
+		"start": "bun src/index.ts",
+		"build": "bun build ./src/index.ts --outdir ./dist --target bun",
+		"typecheck": "tsc --noEmit",
+		"db:generate": "bunx drizzle-kit generate",
+		"db:migrate": "bun run src/db/migrate.ts",
+		"db:studio": "bunx drizzle-kit studio"
+	},
+	"dependencies": {
+		"@eros/crawler-core": "workspace:*",
+		"@eros/shared": "workspace:*",
+		"hono": "catalog:",
+		"drizzle-orm": "catalog:",
+		"bullmq": "catalog:",
+		"ioredis": "catalog:",
+		"pino": "catalog:",
+		"pino-pretty": "catalog:",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"drizzle-kit": "catalog:"
+	}
+}
