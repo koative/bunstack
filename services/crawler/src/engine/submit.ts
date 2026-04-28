@@ -33,7 +33,12 @@ export class JobSubmitter {
 		this.registry.get(source);
 
 		const result: SubmitResult = { accepted: 0, skipped: 0, jobIds: [] };
-		const toEnqueue: { jobId: string; url: string; item: EnqueueItem; hash: Buffer }[] = [];
+		const toEnqueue: {
+			jobId: string;
+			url: string;
+			item: EnqueueItem;
+			hash: Buffer;
+		}[] = [];
 
 		for (const item of items) {
 			const normalized = safeNormalize(item.url);
@@ -42,7 +47,7 @@ export class JobSubmitter {
 				continue;
 			}
 			const hash = urlHash(normalized);
-			const jobId = `${source}:${hash.toString("hex")}`;
+			const jobId = hash.toString("hex");
 
 			if (await this.dedup.has(jobId)) {
 				const existing = await this.store.findByHash(source, hash);

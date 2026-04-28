@@ -18,7 +18,7 @@ const STATUS_MAP: Record<string, JobStatus> = {
 };
 
 function queueName(source: string): string {
-	return `${env.BULLMQ_PREFIX}:${source}`;
+	return source;
 }
 
 export class BullMqQueue implements QueueAdapter {
@@ -27,11 +27,11 @@ export class BullMqQueue implements QueueAdapter {
 	constructor(private readonly connection: ConnectionOptions) {}
 
 	private getQueue(source: string): Queue {
-		const name = queueName(source);
 		let q = this.queues.get(source);
 		if (!q) {
-			q = new Queue(name, {
+			q = new Queue(queueName(source), {
 				connection: this.connection,
+				prefix: env.BULLMQ_PREFIX,
 				defaultJobOptions: {
 					attempts: 5,
 					backoff: { type: "exponential", delay: 2_000 },

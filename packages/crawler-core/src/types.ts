@@ -10,6 +10,21 @@ export type JobStatus =
 
 export type CrawlOutcome = "success" | "blocked" | "timeout" | "error";
 
+export type ErrorKind =
+	| "fetch"
+	| "blocked"
+	| "timeout"
+	| "parse"
+	| "handler"
+	| "unknown";
+
+export type CrawlStatus =
+	| "pending"
+	| "active"
+	| "done"
+	| "failed"
+	| "blocked";
+
 export interface ProxyDescriptor {
 	url: string;
 	tier: ProxyTier;
@@ -58,7 +73,7 @@ export interface UpsertTargetInput {
 	url: string;
 	urlHash: Buffer;
 	contentHash?: Buffer;
-	status?: "pending" | "done" | "failed";
+	status?: CrawlStatus;
 	nextCrawlAfter?: Date;
 }
 
@@ -73,9 +88,58 @@ export interface CrawlTargetRow {
 	url: string;
 	urlHash: Buffer;
 	contentHash: Buffer | null;
-	status: string;
+	status: CrawlStatus;
 	failCount: number;
+	attemptCount: number;
+	lastError: string | null;
+	lastErrorKind: ErrorKind | null;
 	firstSeenAt: Date;
 	lastCrawledAt: Date | null;
 	nextCrawlAfter: Date | null;
+}
+
+export interface CrawlSourceDef {
+	source: string;
+	description?: string;
+	enabled?: boolean;
+	baseUrl?: string;
+	recrawlIntervalSec?: number;
+	rateLimitPerMinute?: number;
+	defaultConcurrency?: number;
+	respectRobotsTxt?: boolean;
+	config?: Record<string, unknown>;
+}
+
+export interface CrawlSourceRow extends CrawlSourceDef {
+	createdAt: Date;
+	updatedAt: Date;
+}
+
+export interface CrawlArtifactInput {
+	targetId: string;
+	contentHash: Buffer | null;
+	body: unknown;
+	bodySize?: number;
+}
+
+export interface CrawlArtifactRow {
+	id: string;
+	targetId: string;
+	version: number;
+	fetchedAt: Date;
+	contentHash: Buffer | null;
+	body: unknown;
+	bodySize: number | null;
+}
+
+export interface ArtifactRecordResult {
+	inserted: boolean;
+	version: number;
+	artifactId: string | null;
+}
+
+export interface StaleTargetQuery {
+	limit?: number;
+	source?: string;
+	now?: Date;
 }

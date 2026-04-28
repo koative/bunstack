@@ -8,6 +8,13 @@
       "when": 1777333210619,
       "tag": "0000_overrated_inhumans",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1777335342121,
+      "tag": "0001_perpetual_stryfe",
+      "breakpoints": true
     }
   ]
 }

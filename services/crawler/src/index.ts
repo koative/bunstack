@@ -2,11 +2,13 @@ import { serve } from "bun";
 import { env } from "./env.ts";
 import { buildEngine } from "./engine/composition.ts";
 import { createApi } from "./api/server.ts";
+import { sandboxCrawler } from "./handlers/sandbox.ts";
 
 const engine = buildEngine();
 
-// register handlers here as they are implemented:
-// engine.registry.register(bunkrCrawler);
+engine.registry.register(sandboxCrawler);
+
+await engine.syncRegistryToDatabase();
 
 engine.workers.start();
 

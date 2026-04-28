@@ -1,6 +1,6 @@
 import { migrate } from "drizzle-orm/bun-sql/migrator";
-import { db, sql } from "./client.ts";
+import { db, bunSql } from "./client.ts";
 
 await migrate(db, { migrationsFolder: "./drizzle" });
-await sql.end();
+await bunSql.end();
 console.log("migrations applied");

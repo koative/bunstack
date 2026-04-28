@@ -1,14 +1,15 @@
 import { Worker, type ConnectionOptions, type Job } from "bullmq";
 import {
+	classifyError,
 	type CrawlContext,
 	type CrawlResult,
+	type CrawlStore,
 	type Fetcher,
 	type Logger,
 	type ProxyProvider,
-	type CrawlStore,
 	type QueueJob,
-	urlHash,
 	normalizeUrl,
+	urlHash,
 } from "@eros/crawler-core";
 import { env } from "../env.ts";
 import type { HandlerRegistry } from "./registry.ts";
@@ -33,11 +34,13 @@ export class CrawlWorkerPool {
 	start(): void {
 		for (const handler of this.deps.registry.list()) {
 			const concurrency = handler.config?.concurrency ?? env.WORKER_CONCURRENCY;
+
 			const w = new Worker<QueueJob>(
 				queueName(handler.source),
 				(job) => this.process(job),
 				{
 					connection: this.deps.connection,
+					prefix: env.BULLMQ_PREFIX,
 					concurrency,
 					autorun: true,
 				},
@@ -92,11 +95,39 @@ export class CrawlWorkerPool {
 
 		try {
 			const result = await handler.handle(ctx);
-			await store.markDone(data.source, hash, result.contentHash ?? null);
+			const bodySize = serializeSize(result.data);
+
+			const record = await store.markDone({
+				source: data.source,
+				urlHash: hash,
+				contentHash: result.contentHash ?? null,
+				body: result.data ?? null,
+				bodySize,
+				nextCrawlAfter: null,
+			});
+
+			childLog.info("job done", {
+				artifactInserted: record.inserted,
+				version: record.version,
+				bodySize,
+			});
+
 			return result;
 		} catch (err) {
-			const e = err as Error;
-			await store.markFailed(data.source, hash, e.message);
+			const kind = classifyError(err);
+			const message = err instanceof Error ? err.message : String(err);
+			const attemptsMade = job.attemptsMade + 1;
+			const totalAttempts = job.opts.attempts ?? 1;
+			const terminal = attemptsMade >= totalAttempts;
+
+			await store.markFailed({
+				source: data.source,
+				urlHash: hash,
+				reason: message,
+				kind,
+				terminal,
+			});
+
 			throw err;
 		}
 	}
@@ -104,5 +135,14 @@ export class CrawlWorkerPool {
 	async stop(): Promise<void> {
 		await Promise.all(this.workers.map((w) => w.close()));
 		this.workers.length = 0;
+	}
+}
+
+function serializeSize(value: unknown): number | undefined {
+	if (value == null) return undefined;
+	try {
+		return Buffer.byteLength(JSON.stringify(value), "utf8");
+	} catch {
+		return undefined;
 	}
 }
