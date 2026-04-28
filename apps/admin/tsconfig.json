@@ -1,0 +1,23 @@
+{
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"jsx": "preserve",
+		"incremental": true,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"types": ["@types/react", "@types/react-dom"],
+		"plugins": [{ "name": "next" }],
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./*"],
+			"@eros/ui/utils": ["../../packages/ui/src/lib/utils.ts"],
+			"@eros/ui/globals.css": ["../../packages/ui/src/styles/globals.css"],
+			"@eros/ui/providers/*": ["../../packages/ui/src/providers/*.tsx"],
+			"@eros/ui/*": ["../../packages/ui/src/components/*.tsx"]
+		}
+	},
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+	"exclude": ["node_modules"]
+}

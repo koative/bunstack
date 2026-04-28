@@ -1,0 +1,24 @@
+{
+	"name": "@apps/admin",
+	"private": true,
+	"scripts": {
+		"dev": "next dev --turbopack --port 1002",
+		"build": "next build",
+		"start": "next start --port 1002",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@eros/ui": "workspace:*",
+		"lucide-react": "^1.9.0",
+		"next": "catalog:",
+		"react": "catalog:",
+		"react-dom": "catalog:",
+		"sonner": "^2.0.7"
+	},
+	"devDependencies": {
+		"@tailwindcss/postcss": "catalog:",
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:",
+		"@types/node": "catalog:"
+	}
+}
