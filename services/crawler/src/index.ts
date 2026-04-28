@@ -11,6 +11,7 @@ engine.registry.register(sandboxCrawler);
 await engine.syncRegistryToDatabase();
 
 engine.workers.start();
+engine.scheduler.start();
 
 const app = createApi({
 	registry: engine.registry,
@@ -33,6 +34,7 @@ engine.log.info("crawler engine ready", {
 const shutdown = async (sig: string) => {
 	engine.log.info("shutdown initiated", { sig });
 	server.stop();
+	engine.scheduler.stop();
 	await engine.workers.stop();
 	await engine.queue.close();
 	engine.redis.disconnect();

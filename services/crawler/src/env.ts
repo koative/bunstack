@@ -8,6 +8,7 @@ const Schema = z.object({
 	LOG_LEVEL: z.enum(["debug", "info", "warn", "error"]).default("info"),
 	WORKER_CONCURRENCY: z.coerce.number().int().positive().default(4),
 	BULLMQ_PREFIX: z.string().default("eros:crawl"),
+	RECRAWL_INTERVAL_MS: z.coerce.number().int().positive().default(60_000),
 });
 
 export type Env = z.infer<typeof Schema>;

@@ -11,6 +11,7 @@ import { logger } from "../infra/logger.ts";
 import { HandlerRegistry } from "./registry.ts";
 import { JobSubmitter } from "./submit.ts";
 import { CrawlWorkerPool } from "./worker.ts";
+import { RecrawlScheduler } from "./scheduler.ts";
 
 export function buildEngine() {
 	const redis = createRedis();
@@ -33,6 +34,10 @@ export function buildEngine() {
 		log: logger,
 		connection,
 	});
+	const scheduler = new RecrawlScheduler(store, submitter, logger, {
+		intervalMs: env.RECRAWL_INTERVAL_MS,
+	});
+
 	async function syncRegistryToDatabase(): Promise<void> {
 		await Promise.all(
 			registry.list().map((h) =>
@@ -40,6 +45,7 @@ export function buildEngine() {
 					source: h.source,
 					rateLimitPerMinute: h.config?.rateLimit?.perMinute,
 					defaultConcurrency: h.config?.concurrency,
+					recrawlIntervalSec: h.config?.recrawlIntervalSec,
 				}),
 			),
 		);
@@ -52,6 +58,7 @@ export function buildEngine() {
 		dedup,
 		submitter,
 		workers,
+		scheduler,
 		redis,
 		log: logger,
 		syncRegistryToDatabase,

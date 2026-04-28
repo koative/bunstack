@@ -16,6 +16,7 @@ export const sandboxCrawler: CrawlerHandler<SandboxData> = {
 		rateLimit: { perMinute: 60 },
 		retries: 3,
 		timeoutMs: 15_000,
+		recrawlIntervalSec: 3600,
 	},
 	async handle({ request, fetch, log }) {
 		const res = await fetch.fetch(request.url);

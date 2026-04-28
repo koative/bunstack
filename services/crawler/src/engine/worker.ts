@@ -34,6 +34,9 @@ export class CrawlWorkerPool {
 	start(): void {
 		for (const handler of this.deps.registry.list()) {
 			const concurrency = handler.config?.concurrency ?? env.WORKER_CONCURRENCY;
+			const limiter = handler.config?.rateLimit
+				? { max: handler.config.rateLimit.perMinute, duration: 60_000 }
+				: undefined;
 
 			const w = new Worker<QueueJob>(
 				queueName(handler.source),
@@ -42,6 +45,7 @@ export class CrawlWorkerPool {
 					connection: this.deps.connection,
 					prefix: env.BULLMQ_PREFIX,
 					concurrency,
+					limiter,
 					autorun: true,
 				},
 			);
@@ -64,6 +68,7 @@ export class CrawlWorkerPool {
 			this.deps.log.info("worker started", {
 				source: handler.source,
 				concurrency,
+				rateLimitPerMinute: handler.config?.rateLimit?.perMinute ?? null,
 			});
 		}
 	}
@@ -96,6 +101,9 @@ export class CrawlWorkerPool {
 		try {
 			const result = await handler.handle(ctx);
 			const bodySize = serializeSize(result.data);
+			const nextCrawlAfter = handler.config?.recrawlIntervalSec
+				? new Date(Date.now() + handler.config.recrawlIntervalSec * 1000)
+				: null;
 
 			const record = await store.markDone({
 				source: data.source,
@@ -103,7 +111,7 @@ export class CrawlWorkerPool {
 				contentHash: result.contentHash ?? null,
 				body: result.data ?? null,
 				bodySize,
-				nextCrawlAfter: null,
+				nextCrawlAfter,
 			});
 
 			childLog.info("job done", {

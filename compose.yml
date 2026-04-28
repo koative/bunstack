@@ -59,6 +59,7 @@ services:
       LOG_LEVEL: ${LOG_LEVEL:-info}
       WORKER_CONCURRENCY: ${WORKER_CONCURRENCY:-4}
       BULLMQ_PREFIX: ${BULLMQ_PREFIX:-eros:crawl}
+      RECRAWL_INTERVAL_MS: ${RECRAWL_INTERVAL_MS:-60000}
     depends_on:
       postgres: { condition: service_healthy }
       redis: { condition: service_healthy }

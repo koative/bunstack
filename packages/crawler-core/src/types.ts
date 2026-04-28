@@ -41,6 +41,7 @@ export interface CrawlerConfig {
 	proxy?: { tier: ProxyTier; sticky?: boolean };
 	retries?: number;
 	timeoutMs?: number;
+	recrawlIntervalSec?: number;
 }
 
 export interface CrawlRequest {
