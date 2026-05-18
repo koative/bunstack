@@ -60,6 +60,15 @@
     "packages/shared": {
       "name": "@eros/shared",
     },
+    "packages/storage": {
+      "name": "@eros/storage",
+      "dependencies": {
+        "zod": "catalog:",
+      },
+      "devDependencies": {
+        "@types/bun": "latest",
+      },
+    },
     "packages/ui": {
       "name": "@eros/ui",
       "dependencies": {
@@ -235,6 +244,8 @@
     "@eros/crawler-core": ["@eros/crawler-core@workspace:packages/crawler-core"],
 
     "@eros/shared": ["@eros/shared@workspace:packages/shared"],
+
+    "@eros/storage": ["@eros/storage@workspace:packages/storage"],
 
     "@eros/ui": ["@eros/ui@workspace:packages/ui"],
 

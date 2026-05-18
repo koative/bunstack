@@ -1,0 +1,22 @@
+{
+	"name": "@eros/storage",
+	"type": "module",
+	"private": true,
+	"exports": {
+		".": "./src/index.ts",
+		"./s3": "./src/s3.ts",
+		"./local-fs": "./src/local-fs.ts",
+		"./memory": "./src/memory.ts",
+		"./factory": "./src/factory.ts"
+	},
+	"scripts": {
+		"test": "bun test",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@types/bun": "latest"
+	}
+}
