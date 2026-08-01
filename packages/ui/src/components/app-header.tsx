@@ -48,7 +48,7 @@ type AppHeaderProps = {
 	brandHref?: string;
 	/** Logo slot — typically an Image or SVG */
 	logo?: React.ReactNode;
-	/** Brand title (e.g. "eros") */
+	/** Brand title (e.g. "arcstack") */
 	title: string;
 	/** Brand subtitle (e.g. "Search") */
 	subtitle?: string;
