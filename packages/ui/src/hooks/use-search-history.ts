@@ -49,7 +49,7 @@ function writeStorage(key: string, items: string[]): void {
 
 const EMPTY: string[] = [];
 
-export function useSearchHistory(storageKey = "eros-search-history") {
+export function useSearchHistory(storageKey = "arcstack-search-history") {
 	const subscribe = (callback: () => void): (() => void) => {
 		const store = getStore(storageKey);
 		store.listeners.add(callback);

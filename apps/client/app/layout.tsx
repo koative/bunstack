@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import "@eros/ui/globals.css";
+import "@arc/ui/globals.css";
 
-import { ThemeProvider } from "@eros/ui/providers/theme-provider";
+import { ThemeProvider } from "@arc/ui/providers/theme-provider";
 
 import { SiteHeader } from "./site-header";
 
 export const metadata: Metadata = {
-	title: "eros ❤️‍🔥",
+	title: "arcstack",
 	description: "Bun-native monorepo",
 };
 

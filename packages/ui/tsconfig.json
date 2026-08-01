@@ -1,6 +1,11 @@
 {
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
+		// Every file here is browser code — hooks touching `window`, `StorageEvent`
+		// and keyboard events. The root config targets Bun (`lib: ESNext`, Bun
+		// types only), which is right for services and wrong here.
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"types": ["@types/react", "@types/react-dom"],
 		"baseUrl": "."
 	},
 	"include": ["src", "postcss.config.ts"],

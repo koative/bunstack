@@ -1,7 +1,7 @@
 "use client";
 
-import { AppHeader } from "@eros/ui/app-header";
-import { ThemeToggle } from "@eros/ui/theme-toggle";
+import { AppHeader } from "@arc/ui/app-header";
+import { ThemeToggle } from "@arc/ui/theme-toggle";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import * as React from "react";
@@ -38,7 +38,7 @@ export function SiteHeader() {
 
 	return (
 		<AppHeader
-			title="eros"
+			title="arcstack"
 			subtitle="Bun-native monorepo"
 			brandHref="/"
 			LinkComponent={NextLink}

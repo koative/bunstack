@@ -1,6 +1,6 @@
 # @apps/client
 
-Next.js 16 frontend with Turbopack. UI components and styles are provided by `@eros/ui`.
+Next.js 16 frontend with Turbopack. UI components and styles are provided by `@arc/ui`.
 
 ## Scripts
 

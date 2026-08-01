@@ -1,11 +1,11 @@
-# @eros/shared
+# @arc/shared
 
 Shared utilities and types consumed by `@apps/server` and any app that needs them.
 
 ## Usage
 
 ```typescript
-import { } from "@eros/shared";
+import { } from "@arc/shared";
 ```
 
 ## Scripts
