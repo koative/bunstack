@@ -1,5 +1,5 @@
 {
-	"name": "@eros/ui",
+	"name": "@arc/ui",
 	"type": "module",
 	"private": true,
 	"exports": {

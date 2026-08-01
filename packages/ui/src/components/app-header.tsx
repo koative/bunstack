@@ -1,21 +1,21 @@
 "use client";
 
-import { Button, buttonVariants } from "@eros/ui/components/button";
+import { Button, buttonVariants } from "@arc/ui/components/button";
 import {
 	InputGroup,
 	InputGroupAddon,
 	InputGroupInput,
-} from "@eros/ui/components/input-group";
+} from "@arc/ui/components/input-group";
 import {
 	Sheet,
 	SheetContent,
 	SheetHeader,
 	SheetTitle,
 	SheetTrigger,
-} from "@eros/ui/components/sheet";
-import { useScrollDirection } from "@eros/ui/hooks/use-scroll-direction";
-import { useSearchHistory } from "@eros/ui/hooks/use-search-history";
-import { cn } from "@eros/ui/lib/utils";
+} from "@arc/ui/components/sheet";
+import { useScrollDirection } from "@arc/ui/hooks/use-scroll-direction";
+import { useSearchHistory } from "@arc/ui/hooks/use-search-history";
+import { cn } from "@arc/ui/lib/utils";
 import { Search, X } from "lucide-react";
 import * as React from "react";
 
@@ -253,7 +253,7 @@ export function AppHeader({
 	defaultQuery = "",
 	searchPlaceholders = DEFAULT_PLACEHOLDERS,
 	categoryEmojis = DEFAULT_EMOJIS,
-	searchHistoryKey = "eros-search-history",
+	searchHistoryKey = "arcstack-search-history",
 	categoryLabel = "Explore",
 	categoryTitle = "Categories",
 	className,

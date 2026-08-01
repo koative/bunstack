@@ -8,7 +8,7 @@
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@eros/ui": "workspace:*",
+		"@arc/ui": "workspace:*",
 		"lucide-react": "catalog:",
 		"next": "catalog:",
 		"react": "catalog:",

@@ -1,6 +1,5 @@
+import { buttonVariants } from "@arc/ui/button";
 import Link from "next/link";
-
-import { buttonVariants } from "@eros/ui/button";
 
 import { MOCK_CATEGORIES } from "./mock-categories";
 
@@ -8,7 +7,7 @@ export default function Page() {
 	return (
 		<main className="mx-auto flex max-w-6xl flex-col gap-8 p-8">
 			<section className="space-y-2">
-				<h1 className="font-bold text-3xl">eros</h1>
+				<h1 className="font-bold text-3xl">arcstack</h1>
 				<p className="text-muted-foreground">
 					Bun-native monorepo. Try the search and categories in the header.
 				</p>

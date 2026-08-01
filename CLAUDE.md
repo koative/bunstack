@@ -5,14 +5,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```sh
-bun run dev          # run all apps + services in watch mode
-bun run start        # run all apps + services in production mode
-bun run test         # run tests across all packages
-bun test             # run tests in current directory
-bun test <file>      # run a single test file
+bun run dev          # run every app in watch mode, in parallel
+bun run build        # build every app
+bun run start        # run every app in production mode
+bun run typecheck    # type-check every workspace
 bun run lint         # check with biome
-bun run lint:fix     # auto-fix with biome
-docker compose up    # postgres + redis + crawler engine (port 1337)
+bun run lint:fix     # apply every safe biome fix
+bun run test         # run tests across packages/
+bun test             # run tests in the current directory
+bun test <file>      # run a single test file
 ```
 
 ## Architecture
@@ -21,26 +22,49 @@ Bun-native monorepo using built-in workspaces — no Turborepo or other build or
 
 ```
 apps/
-  client/    → @apps/client      (Next.js frontend, port 1001)
-  admin/     → @apps/admin       (internal control panel, port 1002)
-  server/    → @apps/server      (Hono backend)
-services/
-  crawler/   → @services/crawler (crawl engine, port 1337)
+  client/  → @apps/client   (Next.js 16 + Turbopack, port 1001)
+  server/  → @apps/server   (Hono on Bun.serve, port 1002)
 packages/
-  shared/        → @eros/shared        (shared code)
-  ui/            → @eros/ui            (components, providers, styles)
-  crawler-core/  → @eros/crawler-core  (SOLID interfaces, URL utils, retry, errors)
+  shared/  → @arc/shared    (shared utilities and types)
+  ui/      → @arc/ui        (shadcn components, providers, styles)
 ```
 
-Workspace packages are referenced via path aliases defined in the root `tsconfig.json`:
-- `@eros/shared` → `packages/shared/index.ts`
-- `@eros/crawler-core` → `packages/crawler-core/src/index.ts`
-- `@eros/ui/*` → `packages/ui/src/components/*.tsx`
-- `@eros/ui/providers/*` → `packages/ui/src/providers/*.tsx`
-- `@eros/ui/utils` → `packages/ui/src/lib/utils.ts`
-- `@eros/ui/globals.css` → `packages/ui/src/styles/globals.css`
+`apps/*` are deployable. `packages/*` are libraries and the only workspaces
+`bun run test` covers. `services/*` is not in the workspace globs; add it back
+if a long-running worker ever needs its own deployable.
 
-Each app and package extends the root `tsconfig.json`. Tests live alongside source files as `*.test.ts`. Only `packages/` has a `test` script; apps use integration/e2e tests when needed.
+Workspace packages resolve through path aliases in the root `tsconfig.json`:
+
+- `@arc/shared` → `packages/shared/index.ts`
+- `@arc/ui/*` → `packages/ui/src/components/*.tsx`
+- `@arc/ui/components/*` → `packages/ui/src/components/*.tsx`
+- `@arc/ui/hooks/*` → `packages/ui/src/hooks/*.ts`
+- `@arc/ui/lib/*` → `packages/ui/src/lib/*.ts`
+- `@arc/ui/providers/*` → `packages/ui/src/providers/*.tsx`
+- `@arc/ui/utils` → `packages/ui/src/lib/utils.ts`
+- `@arc/ui/globals.css` → `packages/ui/src/styles/globals.css`
+
+Every workspace extends the root `tsconfig.json`. Two of them override it
+deliberately, and both overrides are load-bearing:
+
+- `packages/ui` adds `lib: ["DOM", ...]` and React types. The root config targets
+  Bun, which is correct for `apps/server` and wrong for browser components —
+  without the override, `window` and `StorageEvent` do not resolve.
+- The Next apps add `jsx: "preserve"` and redeclare the `@arc/ui` paths relative
+  to themselves, because Next compiles them with its own settings.
+
+Tests live alongside source as `*.test.ts`.
+
+## Dependencies
+
+Versions shared by more than one workspace are pinned once in the root
+`catalog` and referenced as `catalog:`. A package used by a single workspace is
+pinned in that workspace instead — do not add it to the catalog.
+
+```sh
+bun add -d <package>                      # root, dev tooling only
+bun add --filter @apps/server <package>   # a single workspace
+```
 
 ## Bun-first conventions
 
@@ -55,18 +79,16 @@ Always use Bun APIs — never reach for Node/npm equivalents:
 - `Bun.sql` for Postgres — not pg / postgres.js
 - `Bun.redis` for Redis — not ioredis
 - `Bun.file` for file I/O — not fs.readFile / writeFile
-- `Bun.$\`cmd\`` for shell commands — not execa
+- ``Bun.$`cmd` `` for shell commands — not execa
 - `WebSocket` built-in — not ws
 - Bun auto-loads `.env` — never use dotenv
 
 ## Frontend
 
-`apps/client` uses Next.js 16 with Turbopack. UI components and styles live in `@eros/ui` and are imported directly into the app. Add new shadcn components by running `bun run add <component>` from inside `packages/ui`.
+`apps/client` runs Next.js 16 with Turbopack. Components and styles come from
+`@arc/ui` and are imported directly. Add a shadcn component with
+`bun run --filter @arc/ui add <component>`.
 
-## Crawl engine
-
-`services/crawler` is a centralized crawl engine: HTTP API (Hono) on port 1337 + BullMQ workers in the same process. Source-specific crawlers are plugins implementing `CrawlerHandler` from `@eros/crawler-core` and registered in `src/index.ts`.
-
-Layered around DI: `Fetcher`, `QueueAdapter`, `CrawlStore`, `DedupStore`, `ProxyProvider`, `Logger` are interfaces in `@eros/crawler-core`; concrete implementations live in `services/crawler/src/infra/` (Postgres / Redis / BullMQ / native fetch). Composition root: `src/engine/composition.ts`.
-
-Local dev: `docker compose up postgres redis -d && cd services/crawler && bun run db:generate && bun run db:migrate && bun run dev`. Full stack: `docker compose up`.
+Files under `packages/ui/src/components/` are generated by `shadcn add` and
+overwritten on regeneration, so `biome.json` turns the a11y rules off for that
+directory. Do not hand-fix lint findings there — they come back.

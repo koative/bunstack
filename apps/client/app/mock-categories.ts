@@ -1,4 +1,4 @@
-import type { CategoryGroup } from "@eros/ui/app-header";
+import type { CategoryGroup } from "@arc/ui/app-header";
 
 export const MOCK_CATEGORIES: CategoryGroup[] = [
 	{
